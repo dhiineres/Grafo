@@ -44,8 +44,8 @@ public class Grafo {
         }
         return grau;
     }
-    
-    public void getOrdemGraus(){
+   
+    public void setOrdemGraus(){
         for(int i = 1; i <= this.numVertices; i++){
             this.ordVertices.add(i);
             this.grauVertices.add(getGrau(i));
@@ -71,4 +71,29 @@ public class Grafo {
         }
     }
     
+    public String getOrdemGraus(){
+        StringBuilder out = new StringBuilder();
+        out.append("\tV - d\n");
+        for(int i = 0; i < this.numVertices; i++){
+            out.append("\t"+ this.ordVertices.get(i)+" - ");
+            out.append( this.grauVertices.get(i) +"\n");
+        }
+        return out.toString();
+    }
+    
+    public String getVerticeMaior(){
+        StringBuilder out = new StringBuilder();
+        out.append("Vértice de Maior Grau:");
+        out.append("\nV - "+ this.ordVertices.get(0));
+        out.append("\nd(V) - "+ this.grauVertices.get(0));
+        return out.toString();
+    }
+    
+    public String getVerticeMenor(){
+        StringBuilder out = new StringBuilder();
+        out.append("Vértice de Menor Grau:");
+        out.append("\nV - "+ this.ordVertices.get(this.numVertices - 1));
+        out.append("\nd(V) - "+ this.grauVertices.get(this.numVertices - 1));
+        return out.toString();
+    }
 }
