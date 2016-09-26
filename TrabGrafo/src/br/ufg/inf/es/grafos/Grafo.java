@@ -47,7 +47,12 @@ public class Grafo {
    
     public String getVizinhos(int v){
         StringBuilder out = new StringBuilder();
-        
+        out.append("Vértices vizinhos a "+ v +":\n");
+        for (int i = 1; i <= this.numVertices; i++){
+            if (this.arestas.get(getIndex(i, v))){
+                out.append(" - "+ i +"\n");
+            }
+        }
         
         return out.toString();
     }
