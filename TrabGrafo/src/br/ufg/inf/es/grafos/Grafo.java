@@ -45,6 +45,13 @@ public class Grafo {
         return grau;
     }
    
+    public String getVizinhos(int v){
+        StringBuilder out = new StringBuilder();
+        
+        
+        return out.toString();
+    }
+    
     public void setOrdemGraus(){
         for(int i = 1; i <= this.numVertices; i++){
             this.ordVertices.add(i);
@@ -95,5 +102,50 @@ public class Grafo {
         out.append("\nV - "+ this.ordVertices.get(this.numVertices - 1));
         out.append("\nd(V) - "+ this.grauVertices.get(this.numVertices - 1));
         return out.toString();
+    }
+    
+    public boolean isCompleto(){
+        for (int i = 0; i < this.numVertices; i++){
+            if (this.grauVertices.get(i) < this.numVertices - 1){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public boolean isCiclo(){
+        for (int i = 0; i < this.numVertices; i++){
+            if (this.grauVertices.get(i) != 2){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public boolean isKRegular(int k){
+        for (int i = 0; i < this.numVertices; i++){
+            if (this.grauVertices.get(i) != k){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public boolean isCaminho(){
+        int ponta = 0, meio = 0;
+        for (int i = 0; i < this.numVertices; i++){
+            if (this.grauVertices.get(i) == 2){
+                meio ++;
+            }else if (this.grauVertices.get(i) == 1){
+                ponta ++;
+            }else{
+                return false;
+            }
+        }
+        if (ponta == 2){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
