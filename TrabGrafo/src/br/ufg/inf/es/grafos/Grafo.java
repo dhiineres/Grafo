@@ -20,8 +20,12 @@ public class Grafo {
         }
     }
     
+    public int getSize(){
+        return this.numVertices;
+    }
+    
     public void addAresta(Boolean is){
-        arestas.add(is);
+        this.arestas.add(is);
     }
     
     public int getIndex(int i, int j){
@@ -31,13 +35,13 @@ public class Grafo {
             if (i > j){
                 return (((i * i - i) / 2) + j - 1);
             }
-            return (((j * j - j) / 2) + j - 1);
+            return (((j * j - j) / 2) + i - 1);
         }
     }
     
     public int getGrau(int i){
         int grau = 0;
-        for (int j = 1; j < this.numVertices; j++){
+        for (int j = 1; j <= this.numVertices; j++){
             if (this.arestas.get(getIndex(i, j))){
                 grau++;
             }
@@ -49,7 +53,7 @@ public class Grafo {
         StringBuilder out = new StringBuilder();
         out.append("Vértices vizinhos a "+ v +":\n");
         for (int i = 1; i <= this.numVertices; i++){
-            if (this.arestas.get(getIndex(i, v))){
+            if (i != v && this.arestas.get(getIndex(i, v))){
                 out.append(" - "+ i +"\n");
             }
         }
@@ -125,6 +129,32 @@ public class Grafo {
             }
         }
         return true;
+    }
+    
+    public String printListas(){
+        StringBuilder out = new StringBuilder();
+        out.append("X 1 2 3 4\n");
+        for(int i = 1; i <= this.numVertices; i++){
+            out.append(i +" ");
+            for (int j = 1; j <= this.numVertices; j++){
+                if(arestas.get(getIndex(i, j))){
+                    out.append("° ");
+                }else{
+                    out.append("- ");
+                }
+            }
+            out.append("\n");
+        }
+        
+        for (int i = 0; i < arestas.size(); i++){
+            if(arestas.get(i)){
+                out.append("T ");
+            }else{
+                out.append("F ");
+            }
+        }
+        
+        return out.toString();
     }
     
     public boolean isKRegular(int k){
