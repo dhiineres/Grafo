@@ -45,7 +45,7 @@ public class Vertice {
     }
     
     public void setPeso(int peso){
-        this.peso = 0;
+        this.peso = peso;
     }
     
     public void addAdj(Vertice V, int dist){

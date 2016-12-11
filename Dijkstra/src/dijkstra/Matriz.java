@@ -5,19 +5,14 @@ import java.util.Scanner;
 
 public class Matriz {
     private int[][] matriz;
-    private ArrayList<Vertice> lista = new ArrayList();
     private int size;
     public Scanner scan = new Scanner(System.in);
     
     
     public Matriz(int size){
+        this.matriz = new int[size][size];
         int dist;
         this.size = size;
-        this.matriz = new int[size][size];
-        for (int i = 0; i < size; i++){
-            //System.out.println(i);
-            lista.add(new Vertice(i));
-        }
         for(int l = 0; l < size; l++){
             for (int c = 0; c < size; c++){
                 if (c == size){
@@ -26,10 +21,6 @@ public class Matriz {
                     dist = scan.nextInt();
                 }
                 this.matriz[l][c] = dist;
-                if(dist > 0){
-                    lista.get(l).addAdj(lista.get(c), dist);
-                }
-                
             }
         }
     }
@@ -41,9 +32,9 @@ public class Matriz {
             return -1;
     }
     
-    public ArrayList getLista(){
-        return this.lista;
-    }
+//    public ArrayList getLista(){
+//        return this.lista;
+//    }
     
     public int getSize(){
         return size;
