@@ -11,15 +11,25 @@ public class Matriz {
     
     
     public Matriz(int size){
+        int dist;
         this.size = size;
         this.matriz = new int[size][size];
+        for (int i = 0; i < size; i++){
+            //System.out.println(i);
+            lista.add(new Vertice(i));
+        }
         for(int l = 0; l < size; l++){
-            lista.add(new Vertice(l));
             for (int c = 0; c < size; c++){
-                if (c != size - 1)
-                    this.matriz[l][c] = scan.nextInt();
-                else
-                    this.matriz[l][c] = Integer.parseInt(scan.nextLine());
+                if (c == size){
+                    dist = Integer.parseInt(scan.nextLine());
+                }else {
+                    dist = scan.nextInt();
+                }
+                this.matriz[l][c] = dist;
+                if(dist > 0){
+                    lista.get(l).addAdj(lista.get(c), dist);
+                }
+                
             }
         }
     }
@@ -37,5 +47,9 @@ public class Matriz {
     
     public int getSize(){
         return size;
+    }
+    
+    public int[][] getTabela(){
+        return this.matriz;
     }
 }
